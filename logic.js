@@ -32,4 +32,12 @@ document.addEventListener("DOMContentLoaded", function () {
       event.preventDefault();
     }
   });
+
+  var slider = document.getElementById("size");
+  slider.addEventListener("input", function () {
+    document.getElementById("sizeLabel").innerHTML =
+      "Size [cm]:" + this.value + "cm";
+
+    // Add your custom logic here to respond to the slider value change
+  });
 });

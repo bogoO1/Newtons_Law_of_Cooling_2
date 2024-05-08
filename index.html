@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Newton's Law of Cooling Simulator</title>
+    <title>Newton's Law of Cooling</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="logic.js"></script>
 
@@ -18,41 +18,41 @@
   </head>
   <body>
     <div class="container">
-      <h2>Volume Selector</h2>
+      <h2>Newton's Law of Cooling</h2>
       <form id="volumeForm">
-        <label for="volume">Select a volume:</label>
+        <label for="volume">Shape:</label>
         <select id="volume" name="volume">
           <option value="Cube">Cube</option>
           <option value="Cylinder">Cylinder</option>
         </select>
-        <label for="size">Enter size in cm:</label>
+        <label for="size" id="sizeLabel">Size [cm]: 5cm</label>
         <input
-          type="number"
+          type="range"
           id="size"
           name="size"
           min="1"
+          max="10"
+          step=".1"
           placeholder="Enter size..."
+          class="slider"
+          value="5"
         />
-        <label for="mediumTemp"
-          >Enter the temperature of the medium in Fahrenheit:</label
-        >
+        <label for="mediumTemp">Medium Temperature [Celsius]:</label>
         <input
           type="number"
           id="mediumTemp"
           name="mediumTemp"
           min="-459.67"
-          placeholder="Enter temperature..."
+          placeholder="Medium Temperature..."
         />
 
-        <label for="objectTemp"
-          >Enter the temperature of the object in Fahrenheit:</label
-        >
+        <label for="objectTemp">Object Temperature [Celsius]:</label>
         <input
           type="number"
           id="objectTemp"
           name="objectTemp"
-          min="-459.67"
-          placeholder="Enter temperature..."
+          min="-273.15"
+          placeholder="Object Temperature..."
         />
 
         <button type="button" onclick="drawVolume()" py-click="onSubmit">
