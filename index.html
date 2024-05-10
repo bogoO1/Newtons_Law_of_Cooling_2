@@ -37,14 +37,6 @@
           class="slider"
           value="5"
         />
-        <label for="mediumTemp">Medium Temperature [Celsius]:</label>
-        <input
-          type="number"
-          id="mediumTemp"
-          name="mediumTemp"
-          min="-459.67"
-          placeholder="Medium Temperature..."
-        />
 
         <label for="objectTemp">Object Temperature [Celsius]:</label>
         <input
@@ -53,6 +45,15 @@
           name="objectTemp"
           min="-273.15"
           placeholder="Object Temperature..."
+        />
+
+        <label for="mediumTemp">Medium Temperature [Celsius]:</label>
+        <input
+          type="number"
+          id="mediumTemp"
+          name="mediumTemp"
+          min="-459.67"
+          placeholder="Medium Temperature..."
         />
 
         <button type="button" onclick="drawVolume()" py-click="onSubmit">

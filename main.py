@@ -3,6 +3,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 from pyscript import document
 from pyscript import display
+import math
 
 shape = document.querySelector("#volume")
 sizeElement = document.querySelector("#size")
@@ -51,12 +52,14 @@ objectTempElement = document.querySelector("#objectTemp")
 
 
 def getK(shape, size):
+	print(size)
 	if shape == "Cube":
-		y = -0.0009072977 + (-0.002777166 - -0.0009072977)/(1 + (pow(size,3)/22.86916)**1.289454)**0.6300348
+		y = -0.0009072971 + ((-0.002777166 + 0.0009072971)/pow(1+pow(size/22.86917, 1.289453), 0.6300349))
 		return y
 	elif shape == "Cylinder":
-		return -0.003457711 - 0.0000265178*size - 0.000004711286* pow(size,2) + 7.975925e-7*pow(size,3) - 2.277228e-8*pow(size,4)
-	
+		y = -0.003220575 - 0.0001079421*size + 0.000004613497*pow(size,2) + 3.636678e-7*pow(size,3) - 1.572577e-8*pow(size,4)
+		return y
+
 	return .01
 
 
@@ -85,8 +88,15 @@ def onSubmit(event):
 	startTemp = float(objectTempElement.value)
 	if size <= 0 or size > 10:
 		return
+	
+	volume = 0
+	if shape.value == "Cube":
+		volume = pow(size, 3)
+	elif shape.value == "Cylinder":
+		radius = 1
+		volume = size * math.pi * pow(radius,2)
 
-	K = getK(shape.value, size);
+	K = getK(shape.value, volume);
 
 	t = np.arange(0.0,10.0 * 60.0,1.0)
 	s = mediumTemp + (startTemp - mediumTemp) * np.exp(K*t)
