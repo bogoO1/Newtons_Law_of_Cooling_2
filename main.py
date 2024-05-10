@@ -98,7 +98,27 @@ def onSubmit(event):
 
 	K = getK(shape.value, volume);
 
-	t = np.arange(0.0,10.0 * 60.0,1.0)
+	tempChange = (startTemp - mediumTemp)
+
+	endTemp = tempChange * .05 + mediumTemp
+
+	if tempChange > 0:
+		endTemp2 = mediumTemp + 1
+	elif tempChange < 0:
+		endTemp2 = mediumTemp - 1
+	else:
+		return
+	
+	if endTemp2 < endTemp : 
+		endTemp = endTemp2
+		
+	endTime = np.abs(np.log((endTemp - mediumTemp)/(startTemp - mediumTemp))/ -K);
+
+	
+	print("endTemp " + str(endTemp))
+	print("endTime " + str(endTime))
+
+	t = np.arange(0.0,endTime,endTime / 1000)
 	s = mediumTemp + (startTemp - mediumTemp) * np.exp(K*t)
 
 	fig, ax = plt.subplots()
