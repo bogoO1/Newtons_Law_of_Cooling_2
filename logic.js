@@ -15,6 +15,7 @@ function drawVolume() {
     shapeOutput.style.borderRadius = "0";
   } else if (selectedShape.toLowerCase() === "cylinder") {
     shapeOutput.style.borderRadius = "50%";
+    size = 1;
   }
 
   shapeOutput.style.width = size * CM_TO_PX + "px";
